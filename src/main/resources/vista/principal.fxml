@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.edu.uniquindio.poo.controladores.ControladorPrincipal"
+            stylesheets="@../estilos/estilos.css"
+            styleClass="fondo">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12"
+              styleClass="barra-superior">
+            <padding>
+                <Insets top="18" right="24" bottom="18" left="24"/>
+            </padding>
+
+            <Label text="CinemaUQ" styleClass="titulo-barra"/>
+            <Label text=" |  Sistema de gestión de cine"
+                   styleClass="texto-barra"/>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox spacing="14" prefWidth="230"
+              styleClass="menu-lateral">
+            <padding>
+                <Insets top="25" right="18" bottom="25" left="18"/>
+            </padding>
+
+            <Label text="MENÚ PRINCIPAL" styleClass="titulo-menu"/>
+
+            <Button text="Cartelera"
+                    onAction="#mostrarCartelera"
+                    maxWidth="Infinity"
+                    styleClass="boton-menu"/>
+
+            <Button text="Confitería"
+                    onAction="#mostrarConfiteria"
+                    maxWidth="Infinity"
+                    styleClass="boton-menu"/>
+
+            <Button text="Mis compras"
+                    onAction="#mostrarCompras"
+                    maxWidth="Infinity"
+                    styleClass="boton-menu"/>
+
+            <Button text="Mi tarjeta y puntos"
+                    onAction="#mostrarTarjeta"
+                    maxWidth="Infinity"
+                    styleClass="boton-menu"/>
+
+            <Button fx:id="btnRecargarTarjeta"
+                    text="Recargar tarjeta"
+                    onAction="#recargarTarjeta"
+                    maxWidth="Infinity"
+                    styleClass="boton-menu"/>
+
+            <Button text="Seleccionar asientos"
+                    onAction="#seleccionarAsientos"
+                    maxWidth="Infinity"
+                    styleClass="boton-menu"/>
+
+            <Button text="Cerrar sesión"
+                    onAction="#cerrarSesion"
+                    maxWidth="Infinity"
+                    styleClass="boton-salir"/>
+        </VBox>
+    </left>
+
+    <center>
+        <ScrollPane fitToWidth="true"
+                    hbarPolicy="NEVER"
+                    style="-fx-background-color: transparent;">
+
+            <VBox alignment="TOP_CENTER"
+                  spacing="18"
+                  styleClass="contenido-principal">
+
+                <padding>
+                    <Insets top="30" right="35"
+                            bottom="40" left="35"/>
+                </padding>
+
+                <Label text="¡Bienvenido a CinemaUQ!"
+                       styleClass="titulo-contenido"/>
+
+                <Label text="Disfruta de tus películas favoritas."
+                       styleClass="subtitulo"/>
+
+                <Label fx:id="lblSeccion"
+                       text="Selecciona una opción del menú para comenzar."
+                       wrapText="true"
+                       maxWidth="Infinity"
+                       styleClass="mensaje-seccion"/>
+
+            </VBox>
+
+        </ScrollPane>
+    </center>
+
+</BorderPane>

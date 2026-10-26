@@ -1,0 +1,126 @@
+.fondo {
+    -fx-background-color: #10131c;
+    -fx-font-family: "Arial";
+}
+
+.titulo {
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e94560;
+}
+
+.subtitulo {
+    -fx-font-size: 15px;
+    -fx-text-fill: #c6cad4;
+}
+
+.panel {
+    -fx-background-color: #1b2030;
+    -fx-background-radius: 16px;
+    -fx-padding: 28px;
+}
+
+.titulo-panel {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.label {
+    -fx-text-fill: #e6e8ef;
+}
+
+.campo {
+    -fx-background-color: #292f42;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #9299ab;
+    -fx-background-radius: 8px;
+    -fx-padding: 11px;
+}
+
+.boton-principal {
+    -fx-background-color: #e94560;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+    -fx-cursor: hand;
+}
+
+.boton-principal:hover {
+    -fx-background-color: #ff5c75;
+}
+
+.mensaje {
+    -fx-text-fill: #ff8b9c;
+}
+
+.pie-pagina {
+    -fx-text-fill: #858da1;
+}
+
+.barra-superior {
+    -fx-background-color: #1b2030;
+}
+
+.titulo-barra {
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e94560;
+}
+
+.texto-barra {
+    -fx-font-size: 14px;
+    -fx-text-fill: #c6cad4;
+}
+
+.menu-lateral {
+    -fx-background-color: #1b2030;
+}
+
+.titulo-menu {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #9299ab;
+    -fx-padding: 0 0 12px 0;
+}
+
+.boton-menu {
+    -fx-background-color: #292f42;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-radius: 8px;
+    -fx-padding: 12px;
+    -fx-cursor: hand;
+}
+
+.boton-menu:hover {
+    -fx-background-color: #3a435c;
+}
+
+.boton-salir {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ff8495;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12px;
+    -fx-cursor: hand;
+}
+
+.contenido-principal {
+    -fx-background-color: #10131c;
+}
+
+.titulo-contenido {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.mensaje-seccion {
+    -fx-font-size: 16px;
+    -fx-text-fill: #c6cad4;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}

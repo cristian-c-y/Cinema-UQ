@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.edu.uniquindio.poo.controladores.ControladorAsientos"
+            prefWidth="1000"
+            prefHeight="650"
+            stylesheets="@../estilos/estilos.css"
+            styleClass="fondo">
+
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="15"
+              styleClass="barra-superior">
+
+            <padding>
+                <Insets top="20" right="25"
+                        bottom="20" left="25"/>
+            </padding>
+
+            <Label text="CinemaUQ"
+                   styleClass="titulo-barra"/>
+
+            <Label text="| Selección de asientos"
+                   styleClass="texto-barra"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true"
+                    hbarPolicy="NEVER"
+                    style="-fx-background-color: transparent;">
+
+            <VBox alignment="TOP_CENTER"
+                  spacing="20"
+                  style="-fx-background-color: #f1f5f9;">
+
+                <padding>
+                    <Insets top="25" right="30"
+                            bottom="30" left="30"/>
+                </padding>
+
+                <Label fx:id="lblInformacion"
+                       text="Cliente:"
+                       style="-fx-font-size: 18px;
+                              -fx-font-weight: bold;"/>
+
+                <Label text="Selecciona una película"
+                       style="-fx-font-size: 15px;"/>
+
+                <ComboBox fx:id="cbPelicula"
+                          prefWidth="350"
+                          promptText="Seleccionar película"
+                          onAction="#seleccionarPelicula"/>
+
+                <Label text="Selecciona una función"
+                       style="-fx-font-size: 15px;"/>
+
+                <ComboBox fx:id="cbFuncion"
+                          prefWidth="350"
+                          promptText="Seleccionar función"
+                          onAction="#seleccionarFuncion"/>
+
+                <Label text="PANTALLA"
+                       alignment="CENTER"
+                       prefWidth="500"
+                       style="-fx-background-color: #cbd5e1;
+                              -fx-padding: 12;
+                              -fx-font-weight: bold;"/>
+
+                <GridPane fx:id="gridAsientos"
+                          alignment="CENTER"
+                          hgap="8"
+                          vgap="8"/>
+
+                <HBox alignment="CENTER"
+                      spacing="20">
+
+                    <Label text="● Disponible"
+                           style="-fx-text-fill: #16a34a;"/>
+
+                    <Label text="● Seleccionado"
+                           style="-fx-text-fill: #2563eb;"/>
+
+                    <Label text="● Ocupado"
+                           style="-fx-text-fill: #dc2626;"/>
+
+                </HBox>
+
+                <Label fx:id="lblSeleccion"
+                       text="Asientos seleccionados: Ninguno"
+                       wrapText="true"
+                       style="-fx-font-size: 16px;
+                              -fx-font-weight: bold;"/>
+
+                <Label fx:id="lblTotal"
+                       text="Total a pagar: $0"
+                       style="-fx-font-size: 20px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: #16a34a;"/>
+
+                <HBox alignment="CENTER"
+                      spacing="20">
+
+                    <Button text="Volver al menú"
+                            onAction="#volverMenu"
+                            prefWidth="170"
+                            styleClass="boton-menu"/>
+
+                    <Button text="Continuar compra"
+                            onAction="#continuarCompra"
+                            prefWidth="170"
+                            styleClass="boton-menu"/>
+
+                </HBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>
