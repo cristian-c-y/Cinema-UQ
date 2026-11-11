@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.poo.controladores.ControladorAdministrarSalas"
+            prefWidth="950" prefHeight="650">
+
+    <top>
+        <VBox spacing="8" style="-fx-background-color: #20232a;">
+            <padding>
+                <Insets top="20" right="25" bottom="20" left="25"/>
+            </padding>
+
+            <Label text="ADMINISTRACIÓN DE SALAS"
+                   style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+            <Label text="Gestiona las salas y sus asientos"
+                   style="-fx-text-fill: #cccccc;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="15">
+            <padding>
+                <Insets top="20" right="30" bottom="20" left="30"/>
+            </padding>
+
+            <TableView fx:id="tablaSalas" prefHeight="310">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="150"/>
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="350"/>
+                    <TableColumn fx:id="colAsientos" text="Asientos" prefWidth="180"/>
+                </columns>
+            </TableView>
+
+            <GridPane hgap="15" vgap="12">
+
+                <Label text="ID:"
+                       GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="txtId" promptText="S004"
+                           GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Nombre:"
+                       GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                <TextField fx:id="txtNombre" promptText="Sala 4"
+                           GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+                <Label text="Filas:"
+                       GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="txtFilas" promptText="5"
+                           GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Asientos por fila:"
+                       GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                <TextField fx:id="txtAsientosPorFila" promptText="8"
+                           GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+            </GridPane>
+
+            <HBox spacing="12" alignment="CENTER_RIGHT">
+                <Button text="Registrar" onAction="#registrarSala"/>
+                <Button text="Actualizar" onAction="#actualizarSala"/>
+                <Button text="Eliminar" onAction="#eliminarSala"/>
+                <Button text="Ver asientos" onAction="#verAsientos"/>
+                <Button text="Limpiar" onAction="#limpiarCampos"/>
+            </HBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT"
+              style="-fx-background-color: #eeeeee;">
+            <padding>
+                <Insets top="12" right="30" bottom="12" left="30"/>
+            </padding>
+            <Button text="Volver" onAction="#volver"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

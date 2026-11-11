@@ -47,4 +47,29 @@ public class GestorAsientos {
                 + asiento.getFila() + "-"
                 + asiento.getNumero();
     }
+
+    public boolean tieneAsientosReservados(Funcion funcion) {
+
+        if (funcion == null) {
+            return false;
+        }
+
+        String prefijo = funcion.getId() + "-";
+
+        return asientosReservados.stream()
+                .anyMatch(clave -> clave.startsWith(prefijo));
+    }
+
+    public int contarAsientosReservados(Funcion funcion) {
+
+        if (funcion == null) {
+            return 0;
+        }
+
+        String prefijo = funcion.getId() + "-";
+
+        return (int) asientosReservados.stream()
+                .filter(clave -> clave.startsWith(prefijo))
+                .count();
+    }
 }

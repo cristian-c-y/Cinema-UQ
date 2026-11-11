@@ -3,6 +3,7 @@ package co.edu.uniquindio.poo.controladores;
 import co.edu.uniquindio.poo.aplicacion.Lanzador;
 import co.edu.uniquindio.poo.modelo.*;
 
+import co.edu.uniquindio.poo.patrones.creacionales.GeneradorConsecutivos;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -263,7 +264,7 @@ public class ControladorAsientos {
         }
 
         CompraBuilder builder = new CompraBuilder()
-                .id(UUID.randomUUID().toString())
+                .id(GeneradorConsecutivos.getInstancia().generarIdCompra())
                 .cliente(clienteActual)
                 .fecha(LocalDateTime.now());
 

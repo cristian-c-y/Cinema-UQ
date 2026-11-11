@@ -1,11 +1,21 @@
 package co.edu.uniquindio.poo.patrones.estructurales;
 
-public abstract class DecoradorPrecio implements ElementoPrecio {
+import java.util.Objects;
 
-    protected ElementoPrecio elemento;
+public abstract class DecoradorPrecio implements ElementoVenta {
 
-    public DecoradorPrecio(ElementoPrecio elemento) {
-        this.elemento = elemento;
+    protected final ElementoVenta elemento;
+
+    public DecoradorPrecio(ElementoVenta elemento) {
+        this.elemento = Objects.requireNonNull(
+                elemento,
+                "El producto no puede ser nulo"
+        );
+    }
+
+    @Override
+    public String getNombre() {
+        return elemento.getNombre();
     }
 
     @Override

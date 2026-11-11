@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.poo.controladores.ControladorTarjeta"
+            prefWidth="900"
+            prefHeight="600">
+
+    <top>
+        <VBox spacing="8" style="-fx-background-color: #20232a;">
+            <padding>
+                <Insets top="20" right="25" bottom="20" left="25"/>
+            </padding>
+
+            <Label text="MI TARJETA VIRTUAL"
+                   style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+            <Label text="Consulta tu saldo, puntos y movimientos"
+                   style="-fx-text-fill: #cccccc;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="18">
+            <padding>
+                <Insets top="25" right="30" bottom="25" left="30"/>
+            </padding>
+
+            <GridPane hgap="20" vgap="15">
+
+                <Label text="Número de tarjeta:"
+                       GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <Label fx:id="lblNumero"
+                       GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Saldo disponible:"
+                       GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <Label fx:id="lblSaldo"
+                       style="-fx-font-size: 20px; -fx-font-weight: bold;"
+                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Estado:"
+                       GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Label fx:id="lblEstado"
+                       GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Puntos disponibles:"
+                       GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <Label fx:id="lblPuntos"
+                       GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            </GridPane>
+
+            <Label text="HISTORIAL DE MOVIMIENTOS"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <TableView fx:id="tablaMovimientos"
+                       VBox.vgrow="ALWAYS">
+
+                <columns>
+                    <TableColumn fx:id="colTipo"
+                                 text="Tipo"
+                                 prefWidth="130"/>
+
+                    <TableColumn fx:id="colValor"
+                                 text="Valor"
+                                 prefWidth="160"/>
+
+                    <TableColumn fx:id="colDescripcion"
+                                 text="Descripción"
+                                 prefWidth="350"/>
+                </columns>
+
+            </TableView>
+
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="15"
+              alignment="CENTER_RIGHT"
+              style="-fx-background-color: #eeeeee;">
+
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+
+            <Button text="Actualizar"
+                    onAction="#actualizarDatos"/>
+
+            <Button text="Volver"
+                    onAction="#volver"/>
+
+        </HBox>
+    </bottom>
+
+</BorderPane>

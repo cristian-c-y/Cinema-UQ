@@ -3,6 +3,7 @@ package co.edu.uniquindio.poo.controladores;
 import co.edu.uniquindio.poo.modelo.Usuario;
 
 import javafx.fxml.FXML;
+import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -21,6 +22,16 @@ import java.io.IOException;
 public class ControladorPrincipal {
 
     @FXML private Button btnRecargarTarjeta;
+    @FXML private Button btnAdministrarPeliculas;
+    @FXML private Button btnAdministrarFunciones;
+    @FXML private Button btnAdministrarSalas;
+    @FXML private Button btnAdministrarConfiteria;
+    @FXML private Button btnAdministrarPromociones;
+
+    @FXML private Button btnConfiteria;
+    @FXML private Button btnMisCompras;
+    @FXML private Button btnMiTarjeta;
+    @FXML private Button btnSeleccionarAsientos;
 
     private Cliente buscarClientePorCorreo(String correo) {
 
@@ -54,9 +65,39 @@ public class ControladorPrincipal {
         );
 
         boolean esAdministrador = usuario instanceof Administrador;
+        boolean esCliente = usuario instanceof Cliente;
 
+        // Opciones exclusivas del administrador
         btnRecargarTarjeta.setVisible(esAdministrador);
         btnRecargarTarjeta.setManaged(esAdministrador);
+
+        btnAdministrarPeliculas.setVisible(esAdministrador);
+        btnAdministrarPeliculas.setManaged(esAdministrador);
+
+        btnAdministrarFunciones.setVisible(esAdministrador);
+        btnAdministrarFunciones.setManaged(esAdministrador);
+
+        btnAdministrarSalas.setVisible(esAdministrador);
+        btnAdministrarSalas.setManaged(esAdministrador);
+
+        btnAdministrarConfiteria.setVisible(esAdministrador);
+        btnAdministrarConfiteria.setManaged(esAdministrador);
+
+        btnAdministrarPromociones.setVisible(esAdministrador);
+        btnAdministrarPromociones.setManaged(esAdministrador);
+
+        // Opciones exclusivas del cliente
+        btnConfiteria.setVisible(esCliente);
+        btnConfiteria.setManaged(esCliente);
+
+        btnMisCompras.setVisible(esCliente);
+        btnMisCompras.setManaged(esCliente);
+
+        btnMiTarjeta.setVisible(esCliente);
+        btnMiTarjeta.setManaged(esCliente);
+
+        btnSeleccionarAsientos.setVisible(esCliente);
+        btnSeleccionarAsientos.setManaged(esCliente);
     }
 
     @FXML
@@ -118,147 +159,107 @@ public class ControladorPrincipal {
     @FXML
     private void mostrarConfiteria() {
 
-        StringBuilder contenido = new StringBuilder();
-
-        contenido.append("CONFITERÍA CINEMAUQ\n\n");
-
-        var catalogo =
-                Lanzador.gestorConfiteria.consultarCatalogo();
-
-        if (catalogo.isEmpty()) {
-
-            contenido.append(
-                    "Todavía no hay productos ni combos registrados."
-            );
-
-        } else {
-
-            for (var elemento : catalogo) {
-
-                contenido.append("Producto: ")
-                        .append(elemento.getNombre())
-                        .append("\nPrecio: $")
-                        .append(String.format(
-                                "%,.0f",
-                                elemento.calcularPrecio()
-                        ))
-                        .append("\n\n----------------------\n\n");
-            }
+        if (!(usuarioActual instanceof Cliente cliente)) {
+            mostrarMensaje("La compra de confitería está disponible para clientes.");
+            return;
         }
 
-        lblSeccion.setText(contenido.toString());
+        try {
+
+            FXMLLoader cargador = new FXMLLoader(
+                    getClass().getResource("/vista/confiteria.fxml")
+            );
+
+            Scene escena = new Scene(cargador.load(), 950, 650);
+
+            ControladorConfiteria controlador = cargador.getController();
+            controlador.configurarCliente(cliente);
+
+            Stage ventana = new Stage();
+            ventana.setTitle("CinemaUQ - Confitería");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+            mostrarMensaje(
+                    "No se pudo abrir Confitería:\n"
+                            + e.getMessage()
+            );
+        }
     }
 
     @FXML
     private void mostrarCompras() {
 
-        if (usuarioActual == null) {
-            lblSeccion.setText("No hay un usuario activo.");
+        if (!(usuarioActual instanceof Cliente cliente)) {
+            mostrarMensaje(
+                    "El historial de compras está disponible para clientes."
+            );
             return;
         }
 
-        if (usuarioActual instanceof Cliente cliente) {
+        try {
 
-            StringBuilder contenido = new StringBuilder();
+            FXMLLoader cargador = new FXMLLoader(
+                    getClass().getResource("/vista/compras.fxml")
+            );
 
-            contenido.append("MIS COMPRAS\n\n");
+            Scene escena = new Scene(cargador.load(), 950, 650);
 
-            List<Compra> compras = cliente.getCompras();
+            ControladorCompras controlador = cargador.getController();
+            controlador.configurarCliente(cliente);
 
-            if (compras.isEmpty()) {
-                contenido.append("Todavía no has realizado compras.");
-            } else {
+            Stage ventana = new Stage();
+            ventana.setTitle("CinemaUQ - Historial de compras");
+            ventana.setScene(escena);
+            ventana.showAndWait();
 
-                DateTimeFormatter formato =
-                        DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        } catch (IOException e) {
 
-                for (Compra compra : compras) {
+            e.printStackTrace();
 
-                    contenido.append("Compra: ")
-                            .append(compra.getId())
-                            .append("\n");
-
-                    contenido.append("Fecha: ")
-                            .append(compra.getFecha().format(formato))
-                            .append("\n");
-
-                    contenido.append("Productos y entradas:\n");
-
-                    for (var elemento : compra.getElementos()) {
-
-                        contenido.append("  - ")
-                                .append(elemento.getNombre())
-                                .append(" | $")
-                                .append(String.format(
-                                        "%,.0f",
-                                        elemento.calcularPrecio()
-                                ))
-                                .append("\n");
-
-                        if (elemento instanceof Entrada entrada) {
-                            contenido.append("    Asiento: ")
-                                    .append(entrada.getAsiento().getFila())
-                                    .append(entrada.getAsiento().getNumero())
-                                    .append("\n");
-                        }
-                    }
-
-                    contenido.append("TOTAL: $")
-                            .append(String.format(
-                                    "%,.0f",
-                                    compra.getTotal()
-                            ))
-                            .append("\n");
-
-                    contenido.append(
-                            "\n-----------------------------\n\n"
-                    );
-                }
-            }
-
-            lblSeccion.setText(contenido.toString());
-
-        } else {
-
-            lblSeccion.setText(
-                    "GESTIÓN DE COMPRAS\n\n"
-                            + "Aquí el administrador podrá consultar "
-                            + "las operaciones del cine."
+            mostrarMensaje(
+                    "No se pudo abrir el historial:\n"
+                            + e.getMessage()
             );
         }
     }
-
     @FXML
     private void mostrarTarjeta() {
 
-        if (usuarioActual instanceof Cliente cliente) {
+        if (!(usuarioActual instanceof Cliente cliente)) {
+            mostrarMensaje(
+                    "La consulta de tarjeta virtual está disponible para clientes."
+            );
+            return;
+        }
 
-            double saldo = cliente.getTarjetaVirtual().getSaldo();
+        try {
 
-            int puntos = cliente.getCuentaPuntos().consultarSaldo();
+            FXMLLoader cargador = new FXMLLoader(
+                    getClass().getResource("/vista/tarjeta.fxml")
+            );
 
-            String contenido =
-                    "MI TARJETA VIRTUAL\n\n"
-                            + "Cliente: " + cliente.getNombre()
-                            + "\n\n"
-                            + "Saldo disponible: $"
-                            + String.format("%,.0f", saldo)
-                            + "\n\n"
-                            + "Puntos acumulados: " + puntos
-                            + "\n\n"
-                            + "Por cada $1.000 en compras acumulas 1 punto."
-                            + "\n\n"
-                            + "Puedes utilizar tu tarjeta virtual "
-                            + "para comprar entradas y productos.";
+            Scene escena = new Scene(cargador.load(), 900, 600);
 
-            lblSeccion.setText(contenido);
+            ControladorTarjeta controlador = cargador.getController();
+            controlador.configurarCliente(cliente);
 
-        } else {
+            Stage ventana = new Stage();
+            ventana.setTitle("CinemaUQ - Mi tarjeta virtual");
+            ventana.setScene(escena);
+            ventana.showAndWait();
 
-            lblSeccion.setText(
-                    "ADMINISTRACIÓN DE TARJETAS\n\n"
-                            + "Aquí podrás consultar las tarjetas "
-                            + "virtuales de los clientes."
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+            mostrarMensaje(
+                    "No se pudo abrir la tarjeta virtual:\n"
+                            + e.getMessage()
             );
         }
     }
@@ -407,4 +408,177 @@ public class ControladorPrincipal {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void administrarPeliculas() {
+
+        if (!(usuarioActual instanceof Administrador administrador)) {
+            mostrarMensaje("Solo un administrador puede gestionar películas.");
+            return;
+        }
+
+        try {
+            FXMLLoader cargador = new FXMLLoader(
+                    getClass().getResource("/vista/administrar-peliculas.fxml")
+            );
+
+            Scene escena = new Scene(cargador.load(), 950, 650);
+
+            ControladorAdministrarPeliculas controlador =
+                    cargador.getController();
+
+            controlador.configurarAdministrador(administrador);
+
+            Stage ventana = new Stage();
+            ventana.setTitle("CinemaUQ - Administración de películas");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarMensaje(
+                    "No se pudo abrir la administración de películas:\n"
+                            + e.getMessage()
+            );
+        }
+    }
+
+    @FXML
+    private void administrarFunciones() {
+
+        if (!(usuarioActual instanceof Administrador administrador)) {
+            mostrarMensaje("Solo un administrador puede gestionar funciones.");
+            return;
+        }
+
+        try {
+            FXMLLoader cargador = new FXMLLoader(
+                    getClass().getResource("/vista/administrar-funciones.fxml")
+            );
+
+            Scene escena = new Scene(cargador.load(), 1000, 650);
+
+            ControladorAdministrarFunciones controlador =
+                    cargador.getController();
+
+            controlador.configurarAdministrador(administrador);
+
+            Stage ventana = new Stage();
+            ventana.setTitle("CinemaUQ - Administración de funciones");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarMensaje(
+                    "No se pudo abrir la administración de funciones:\n"
+                            + e.getMessage()
+            );
+        }
+    }
+
+
+    @FXML
+    private void administrarSalas() {
+
+        if (!(usuarioActual instanceof Administrador administrador)) {
+            mostrarMensaje("Solo un administrador puede gestionar salas.");
+            return;
+        }
+
+        try {
+
+            FXMLLoader cargador = new FXMLLoader(
+                    getClass().getResource("/vista/administrar-salas.fxml")
+            );
+
+            Scene escena = new Scene(cargador.load(), 950, 650);
+
+            ControladorAdministrarSalas controlador =
+                    cargador.getController();
+
+            controlador.configurarAdministrador(administrador);
+
+            Stage ventana = new Stage();
+            ventana.setTitle("CinemaUQ - Administración de salas");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarMensaje(
+                    "No se pudo abrir la administración de salas:\n"
+                            + e.getMessage()
+            );
+        }
+    }
+
+
+    @FXML
+    private void administrarConfiteria() {
+
+        if (!(usuarioActual instanceof Administrador administrador)) {
+            mostrarMensaje("Solo un administrador puede gestionar confitería.");
+            return;
+        }
+
+        try {
+            FXMLLoader cargador = new FXMLLoader(
+                    getClass().getResource("/vista/administrar-confiteria.fxml")
+            );
+
+            Scene escena = new Scene(cargador.load(), 1000, 700);
+
+            ControladorAdministrarConfiteria controlador =
+                    cargador.getController();
+
+            controlador.configurarAdministrador(administrador);
+
+            Stage ventana = new Stage();
+            ventana.setTitle("CinemaUQ - Administración de confitería");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarMensaje(
+                    "No se pudo abrir la administración de confitería:\n"
+                            + e.getMessage()
+            );
+        }
+    }
+
+
+    @FXML
+    private void administrarPromociones() {
+
+        if (!(usuarioActual instanceof Administrador administrador)) {
+            mostrarMensaje("Solo un administrador puede gestionar promociones.");
+            return;
+        }
+
+        try {
+            FXMLLoader cargador = new FXMLLoader(
+                    getClass().getResource("/vista/administrar-promociones.fxml")
+            );
+
+            Scene escena = new Scene(cargador.load(), 900, 600);
+
+            ControladorAdministrarPromociones controlador =
+                    cargador.getController();
+
+            controlador.configurarAdministrador(administrador);
+
+            Stage ventana = new Stage();
+            ventana.setTitle("CinemaUQ - Administración de promociones");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarMensaje("No se pudo abrir la administración de promociones.");
+        }
+    }
+
+
 }

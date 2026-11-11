@@ -33,6 +33,24 @@ public class Producto implements ElementoConfiteria {
     }
 
     public void setPrecio(double precio) {
+
+        if (!Double.isFinite(precio) || precio < 0) {
+            throw new IllegalArgumentException(
+                    "El precio debe ser un número válido y no negativo."
+            );
+        }
+
         this.precio = precio;
+    }
+
+    public void setNombre(String nombre) {
+
+        if (nombre == null || nombre.isBlank()) {
+            throw new IllegalArgumentException(
+                    "El nombre del producto no puede estar vacío."
+            );
+        }
+
+        this.nombre = nombre;
     }
 }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.poo.controladores.ControladorAdministrarPeliculas"
+            prefWidth="950" prefHeight="650">
+
+    <top>
+        <VBox spacing="8" style="-fx-background-color: #20232a;">
+            <padding>
+                <Insets top="20" right="25" bottom="20" left="25"/>
+            </padding>
+            <Label text="ADMINISTRACIÓN DE PELÍCULAS"
+                   style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+            <Label text="Registra, modifica y elimina películas de CinemaUQ"
+                   style="-fx-text-fill: #cccccc;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="15">
+            <padding>
+                <Insets top="20" right="30" bottom="20" left="30"/>
+            </padding>
+
+            <TableView fx:id="tablaPeliculas" prefHeight="280">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="100"/>
+                    <TableColumn fx:id="colTitulo" text="Título" prefWidth="230"/>
+                    <TableColumn fx:id="colGenero" text="Género" prefWidth="160"/>
+                    <TableColumn fx:id="colDuracion" text="Duración" prefWidth="120"/>
+                    <TableColumn fx:id="colClasificacion" text="Clasificación" prefWidth="150"/>
+                </columns>
+            </TableView>
+
+            <GridPane hgap="12" vgap="12">
+                <Label text="ID:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="txtId" promptText="P004"
+                           GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Título:" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                <TextField fx:id="txtTitulo" promptText="Título de la película"
+                           GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+                <Label text="Género:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="txtGenero" promptText="Género"
+                           GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Duración:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                <TextField fx:id="txtDuracion" promptText="Minutos"
+                           GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+                <Label text="Clasificación:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="txtClasificacion" promptText="Ej. +12"
+                           GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            </GridPane>
+
+            <HBox spacing="12" alignment="CENTER_RIGHT">
+                <Button text="Registrar" onAction="#registrarPelicula"/>
+                <Button text="Actualizar" onAction="#actualizarPelicula"/>
+                <Button text="Eliminar" onAction="#eliminarPelicula"/>
+                <Button text="Limpiar" onAction="#limpiarCampos"/>
+            </HBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #eeeeee;">
+            <padding>
+                <Insets top="12" right="30" bottom="12" left="30"/>
+            </padding>
+            <Button text="Volver" onAction="#volver"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

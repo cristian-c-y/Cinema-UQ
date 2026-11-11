@@ -7,6 +7,10 @@ public class ServicioPagoExterno {
             return false;
         }
 
+        if (tarjeta.equals("RECHAZADA")) {
+            return false;
+        }
+
         System.out.println(
                 "Autorización externa simulada para un pago de $" + valor
         );

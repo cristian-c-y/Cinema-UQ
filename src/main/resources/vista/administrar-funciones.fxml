@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.poo.controladores.ControladorAdministrarFunciones"
+            prefWidth="1000" prefHeight="650">
+
+    <top>
+        <VBox spacing="8"
+              style="-fx-background-color: #20232a;">
+            <padding>
+                <Insets top="20" right="25" bottom="20" left="25"/>
+            </padding>
+
+            <Label text="ADMINISTRACIÓN DE FUNCIONES"
+                   style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+            <Label text="Programa y administra las funciones de CinemaUQ"
+                   style="-fx-text-fill: #cccccc;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="15">
+            <padding>
+                <Insets top="20" right="30" bottom="20" left="30"/>
+            </padding>
+
+            <TableView fx:id="tablaFunciones" prefHeight="300">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="90"/>
+                    <TableColumn fx:id="colPelicula" text="Película" prefWidth="250"/>
+                    <TableColumn fx:id="colSala" text="Sala" prefWidth="140"/>
+                    <TableColumn fx:id="colFecha" text="Fecha y hora" prefWidth="200"/>
+                    <TableColumn fx:id="colReservados" text="Reservados" prefWidth="110"/>
+                </columns>
+            </TableView>
+
+            <GridPane hgap="12" vgap="12">
+
+                <Label text="ID:"
+                       GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="txtId"
+                           promptText="F005"
+                           GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Película:"
+                       GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                <ComboBox fx:id="comboPeliculas"
+                          prefWidth="230"
+                          GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+                <Label text="Sala:"
+                       GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <ComboBox fx:id="comboSalas"
+                          prefWidth="180"
+                          GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Fecha:"
+                       GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                <DatePicker fx:id="fechaFuncion"
+                            GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+                <Label text="Hora:"
+                       GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="txtHora"
+                           promptText="Ej. 18:30"
+                           GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            </GridPane>
+
+            <HBox spacing="12" alignment="CENTER_RIGHT">
+                <Button text="Registrar"
+                        onAction="#registrarFuncion"/>
+                <Button text="Actualizar horario"
+                        onAction="#actualizarFuncion"/>
+                <Button text="Eliminar"
+                        onAction="#eliminarFuncion"/>
+                <Button text="Limpiar"
+                        onAction="#limpiarCampos"/>
+            </HBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT"
+              style="-fx-background-color: #eeeeee;">
+            <padding>
+                <Insets top="12" right="30" bottom="12" left="30"/>
+            </padding>
+            <Button text="Volver" onAction="#volver"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

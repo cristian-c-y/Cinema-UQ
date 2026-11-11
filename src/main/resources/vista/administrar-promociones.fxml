@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.poo.controladores.ControladorAdministrarPromociones"
+            prefWidth="900" prefHeight="600">
+
+    <top>
+        <VBox spacing="8" style="-fx-background-color: #707080;">
+            <padding>
+                <Insets top="20" right="25" bottom="20" left="25"/>
+            </padding>
+            <Label text="ADMINISTRACIÓN DE PROMOCIONES"
+                   style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+            <Label text="Gestiona los descuentos de CinemaUQ"
+                   style="-fx-text-fill: #cccccc;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="18">
+            <padding>
+                <Insets top="20" right="25" bottom="20" left="25"/>
+            </padding>
+
+            <TableView fx:id="tablaPromociones" prefHeight="290">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="120"/>
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="320"/>
+                    <TableColumn fx:id="colPorcentaje" text="Descuento" prefWidth="150"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="150"/>
+                </columns>
+            </TableView>
+
+            <GridPane hgap="12" vgap="14">
+                <Label text="ID:"
+                       GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="txtId"
+                           promptText="PROM001"
+                           GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Nombre:"
+                       GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                <TextField fx:id="txtNombre"
+                           promptText="Promoción especial"
+                           GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+                <Label text="Descuento (%):"
+                       GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="txtPorcentaje"
+                           promptText="15"
+                           GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            </GridPane>
+
+            <HBox spacing="10">
+                <Button text="Registrar" onAction="#registrarPromocion"/>
+                <Button text="Actualizar" onAction="#actualizarPromocion"/>
+                <Button text="Activar" onAction="#activarPromocion"/>
+                <Button text="Desactivar" onAction="#desactivarPromocion"/>
+                <Button text="Eliminar" onAction="#eliminarPromocion"/>
+                <Button text="Limpiar" onAction="#limpiarCampos"/>
+            </HBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT"
+              style="-fx-background-color: #eeeeee;">
+            <padding>
+                <Insets top="12" right="25" bottom="12" left="25"/>
+            </padding>
+            <Button text="Volver" onAction="#volver"/>
+        </HBox>
+    </bottom>
+</BorderPane>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.poo.controladores.ControladorConfiteria"
+            prefWidth="950"
+            prefHeight="700">
+
+    <top>
+        <VBox spacing="8" style="-fx-background-color: #20232a;">
+            <padding>
+                <Insets top="20" right="25" bottom="20" left="25"/>
+            </padding>
+
+            <Label text="CONFITERÍA CINEMAUQ"
+                   style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+            <Label text="Selecciona tus productos y combos favoritos"
+                   style="-fx-text-fill: #cccccc;"/>
+
+            <Label text="Promoción disponible:"
+                   style="-fx-text-fill: white;"/>
+
+            <ComboBox fx:id="comboPromociones"
+                      prefWidth="300"
+                      promptText="Sin promoción"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="12">
+            <padding>
+                <Insets top="20" right="30" bottom="20" left="30"/>
+            </padding>
+
+            <Label text="Productos disponibles"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <TableView fx:id="tablaProductos"
+                       prefHeight="210"
+                       VBox.vgrow="ALWAYS">
+
+                <columns>
+                    <TableColumn fx:id="colNombre"
+                                 text="Producto o combo"
+                                 prefWidth="360"/>
+
+                    <TableColumn fx:id="colPrecio"
+                                 text="Precio"
+                                 prefWidth="160"/>
+                </columns>
+            </TableView>
+
+            <Label text="Personaliza tu producto"
+                   style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <HBox spacing="20" alignment="CENTER_LEFT">
+
+                <CheckBox fx:id="chkMantequilla"
+                          text="Mantequilla extra (+2.000 COP)"/>
+
+                <CheckBox fx:id="chkQueso"
+                          text="Queso extra (+ 3.000 COP)"/>
+
+            </HBox>
+
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="Cantidad:"/>
+
+                <Spinner fx:id="spinnerCantidad"
+                         prefWidth="100"
+                         editable="true"/>
+
+                <Button text="Agregar al carrito"
+                        onAction="#agregarAlCarrito"/>
+            </HBox>
+
+            <Label text="Carrito de compras"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <ListView fx:id="listaCarrito"
+                      prefHeight="140"/>
+
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Label text="TOTAL:"
+                       style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+                <Label fx:id="lblTotal"
+                       text="0 COP"
+                       style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            </HBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="15"
+              alignment="CENTER_RIGHT"
+              style="-fx-background-color: #eeeeee;">
+
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+
+            <Button text="Volver"
+                    onAction="#volver"/>
+
+            <Button text="Vaciar carrito"
+                    onAction="#vaciarCarrito"/>
+
+            <Button text="Confirmar compra"
+                    onAction="#confirmarCompra"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

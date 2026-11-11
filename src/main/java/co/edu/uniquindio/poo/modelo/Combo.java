@@ -57,4 +57,15 @@ public class Combo implements ElementoConfiteria {
                 .mapToDouble(ElementoConfiteria::calcularPrecio)
                 .sum();
     }
+
+    public void setNombre(String nombre) {
+
+        if (nombre == null || nombre.isBlank()) {
+            throw new IllegalArgumentException(
+                    "El nombre del combo no puede estar vacío."
+            );
+        }
+
+        this.nombre = nombre;
+    }
 }

@@ -1,7 +1,6 @@
 package co.edu.uniquindio.poo.patrones.estructurales;
 
-public interface ElementoVenta {
+public interface ElementoVenta extends ElementoPrecio {
 
     String getNombre();
-    double calcularPrecio();
 }

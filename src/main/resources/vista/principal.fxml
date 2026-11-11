@@ -27,50 +27,114 @@
         </HBox>
     </top>
 
+
     <left>
         <VBox spacing="14" prefWidth="230"
               styleClass="menu-lateral">
+
             <padding>
                 <Insets top="25" right="18" bottom="25" left="18"/>
             </padding>
 
-            <Label text="MENÚ PRINCIPAL" styleClass="titulo-menu"/>
+            <Label text="MENÚ PRINCIPAL"
+                   styleClass="titulo-menu"/>
 
             <Button text="Cartelera"
                     onAction="#mostrarCartelera"
                     maxWidth="Infinity"
                     styleClass="boton-menu"/>
 
-            <Button text="Confitería"
+            <!-- OPCIONES DEL CLIENTE -->
+
+            <Button fx:id="btnConfiteria"
+                    text="Confitería"
                     onAction="#mostrarConfiteria"
                     maxWidth="Infinity"
+                    visible="false"
+                    managed="false"
                     styleClass="boton-menu"/>
 
-            <Button text="Mis compras"
+            <Button fx:id="btnMisCompras"
+                    text="Mis compras"
                     onAction="#mostrarCompras"
                     maxWidth="Infinity"
+                    visible="false"
+                    managed="false"
                     styleClass="boton-menu"/>
 
-            <Button text="Mi tarjeta y puntos"
+            <Button fx:id="btnMiTarjeta"
+                    text="Mi tarjeta y puntos"
                     onAction="#mostrarTarjeta"
                     maxWidth="Infinity"
+                    visible="false"
+                    managed="false"
                     styleClass="boton-menu"/>
+
+            <Button fx:id="btnSeleccionarAsientos"
+                    text="Seleccionar asientos"
+                    onAction="#seleccionarAsientos"
+                    maxWidth="Infinity"
+                    visible="false"
+                    managed="false"
+                    styleClass="boton-menu"/>
+
+            <!-- OPCIONES DEL ADMINISTRADOR -->
 
             <Button fx:id="btnRecargarTarjeta"
                     text="Recargar tarjeta"
                     onAction="#recargarTarjeta"
                     maxWidth="Infinity"
+                    visible="false"
+                    managed="false"
                     styleClass="boton-menu"/>
 
-            <Button text="Seleccionar asientos"
-                    onAction="#seleccionarAsientos"
+            <Button fx:id="btnAdministrarPeliculas"
+                    text="Administrar películas"
+                    onAction="#administrarPeliculas"
                     maxWidth="Infinity"
+                    visible="false"
+                    managed="false"
                     styleClass="boton-menu"/>
+
+            <Button fx:id="btnAdministrarFunciones"
+                    text="Administrar funciones"
+                    onAction="#administrarFunciones"
+                    maxWidth="Infinity"
+                    visible="false"
+                    managed="false"
+                    styleClass="boton-menu"/>
+
+            <Button fx:id="btnAdministrarSalas"
+                    text="Administrar salas"
+                    onAction="#administrarSalas"
+                    maxWidth="Infinity"
+                    visible="false"
+                    managed="false"
+                    styleClass="boton-menu"/>
+
+            <Button fx:id="btnAdministrarConfiteria"
+                    text="Administrar confitería"
+                    onAction="#administrarConfiteria"
+                    maxWidth="Infinity"
+                    visible="false"
+                    managed="false"
+                    styleClass="boton-menu"/>
+
+            <Button fx:id="btnAdministrarPromociones"
+                    text="Administrar promociones"
+                    onAction="#administrarPromociones"
+                    maxWidth="Infinity"
+                    visible="false"
+                    managed="false"
+                    styleClass="boton-menu"/>
+
+            <!-- CERRAR SESIÓN -->
 
             <Button text="Cerrar sesión"
                     onAction="#cerrarSesion"
                     maxWidth="Infinity"
                     styleClass="boton-salir"/>
+
         </VBox>
     </left>
 

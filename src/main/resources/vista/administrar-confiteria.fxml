@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.poo.controladores.ControladorAdministrarConfiteria"
+            prefWidth="1000" prefHeight="700">
+
+    <top>
+        <VBox spacing="8" style="-fx-background-color: #20232a;">
+            <padding>
+                <Insets top="20" right="25" bottom="20" left="25"/>
+            </padding>
+            <Label text="ADMINISTRACIÓN DE CONFITERÍA"
+                   style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+            <Label text="Gestiona los productos y combos de CinemaUQ"
+                   style="-fx-text-fill: #cccccc;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="14">
+            <padding>
+                <Insets top="18" right="25" bottom="18" left="25"/>
+            </padding>
+
+            <TableView fx:id="tablaCatalogo" prefHeight="250">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="100"/>
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="300"/>
+                    <TableColumn fx:id="colTipo" text="Tipo" prefWidth="130"/>
+                    <TableColumn fx:id="colPrecio" text="Precio" prefWidth="150"/>
+                </columns>
+            </TableView>
+
+            <TabPane tabClosingPolicy="UNAVAILABLE">
+
+                <tabs>
+                    <Tab text="Productos">
+                        <VBox spacing="12">
+                            <padding>
+                                <Insets top="15" right="15" bottom="15" left="15"/>
+                            </padding>
+
+                            <GridPane hgap="12" vgap="12">
+                                <Label text="ID:"
+                                       GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                                <TextField fx:id="txtIdProducto"
+                                           promptText="PR005"
+                                           GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                                <Label text="Nombre:"
+                                       GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                                <TextField fx:id="txtNombreProducto"
+                                           promptText="Producto"
+                                           GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+                                <Label text="Precio:"
+                                       GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                                <TextField fx:id="txtPrecioProducto"
+                                           promptText="12000"
+                                           GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                            </GridPane>
+
+                            <HBox spacing="10">
+                                <Button text="Registrar producto"
+                                        onAction="#registrarProducto"/>
+                                <Button text="Actualizar producto"
+                                        onAction="#actualizarProducto"/>
+                                <Button text="Eliminar seleccionado"
+                                        onAction="#eliminarSeleccionado"/>
+                                <Button text="Limpiar"
+                                        onAction="#limpiarCampos"/>
+                            </HBox>
+                        </VBox>
+                    </Tab>
+
+                    <Tab text="Combos">
+                        <VBox spacing="12">
+                            <padding>
+                                <Insets top="15" right="15" bottom="15" left="15"/>
+                            </padding>
+
+                            <GridPane hgap="12" vgap="12">
+                                <Label text="ID:"
+                                       GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                                <TextField fx:id="txtIdCombo"
+                                           promptText="CB003"
+                                           GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                                <Label text="Nombre:"
+                                       GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                                <TextField fx:id="txtNombreCombo"
+                                           promptText="Combo nuevo"
+                                           GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+                            </GridPane>
+
+                            <Label text="Selecciona los productos del combo:"/>
+
+                            <ListView fx:id="listaProductosCombo"
+                                      prefHeight="130"/>
+
+                            <HBox spacing="10">
+                                <Button text="Registrar combo"
+                                        onAction="#registrarCombo"/>
+                                <Button text="Actualizar nombre"
+                                        onAction="#actualizarCombo"/>
+                                <Button text="Eliminar seleccionado"
+                                        onAction="#eliminarSeleccionado"/>
+                            </HBox>
+                        </VBox>
+                    </Tab>
+                </tabs>
+            </TabPane>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT"
+              style="-fx-background-color: #eeeeee;">
+            <padding>
+                <Insets top="12" right="25" bottom="12" left="25"/>
+            </padding>
+            <Button text="Volver" onAction="#volver"/>
+        </HBox>
+    </bottom>
+</BorderPane>
