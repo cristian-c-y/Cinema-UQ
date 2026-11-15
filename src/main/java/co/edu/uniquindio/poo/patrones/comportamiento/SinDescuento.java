@@ -1,4 +1,3 @@
-
 package co.edu.uniquindio.poo.patrones.comportamiento;
 
 public class SinDescuento implements EstrategiaDescuento {

@@ -27,6 +27,7 @@ public class ControladorPrincipal {
     @FXML private Button btnAdministrarSalas;
     @FXML private Button btnAdministrarConfiteria;
     @FXML private Button btnAdministrarPromociones;
+    @FXML private Button btnReportes;
 
     @FXML private Button btnConfiteria;
     @FXML private Button btnMisCompras;
@@ -85,6 +86,9 @@ public class ControladorPrincipal {
 
         btnAdministrarPromociones.setVisible(esAdministrador);
         btnAdministrarPromociones.setManaged(esAdministrador);
+
+        btnReportes.setVisible(esAdministrador);
+        btnReportes.setManaged(esAdministrador);
 
         // Opciones exclusivas del cliente
         btnConfiteria.setVisible(esCliente);
@@ -580,5 +584,44 @@ public class ControladorPrincipal {
         }
     }
 
+    @FXML
+    private void mostrarReportes() {
 
+        if (!(usuarioActual instanceof Administrador)) {
+            mostrarMensaje(
+                    "Solo un administrador puede consultar los reportes."
+            );
+            return;
+        }
+
+        try {
+
+            FXMLLoader cargador = new FXMLLoader(
+                    getClass().getResource("/vista/reportes.fxml")
+            );
+
+            Scene escena = new Scene(cargador.load(), 1050, 700);
+
+            ControladorReportes controlador =
+                    cargador.getController();
+
+            controlador.configurarGestorUsuarios(
+                    Lanzador.gestorUsuarios
+            );
+
+            Stage ventana = new Stage();
+            ventana.setTitle("CinemaUQ - Reportes y estadísticas");
+            ventana.setScene(escena);
+            ventana.showAndWait();
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+            mostrarMensaje(
+                    "No se pudo abrir la ventana de reportes:\n"
+                            + e.getMessage()
+            );
+        }
+    }
 }

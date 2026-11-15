@@ -1,4 +1,3 @@
-
 package co.edu.uniquindio.poo.patrones.creacionales;
 
 public final class GeneradorConsecutivos {

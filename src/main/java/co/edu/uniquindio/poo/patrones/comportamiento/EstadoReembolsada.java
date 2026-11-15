@@ -1,4 +1,3 @@
-
 package co.edu.uniquindio.poo.patrones.comportamiento;
 
 import co.edu.uniquindio.poo.modelo.Compra;

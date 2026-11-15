@@ -128,6 +128,14 @@
                     managed="false"
                     styleClass="boton-menu"/>
 
+            <Button fx:id="btnReportes"
+                    text="Reportes y estadísticas"
+                    onAction="#mostrarReportes"
+                    maxWidth="Infinity"
+                    visible="false"
+                    managed="false"
+                    styleClass="boton-menu"/>
+
             <!-- CERRAR SESIÓN -->
 
             <Button text="Cerrar sesión"
